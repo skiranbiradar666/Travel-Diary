@@ -16,4 +16,9 @@ export class TravelDashboardComponent implements OnInit {
 
   travelArr : Array<ITravel> = TRAVEL_MEMORIES
 
+  getNewMemory(travel : ITravel){
+
+    this.travelArr.push(travel)
+
+  }
 }

@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TravelDashboardComponent } from './shared/components/travel-dashboard/travel-dashboard.component';
 import { TravelFormComponent } from './shared/components/travel-form/travel-form.component';
 import { TravelListComponent } from './shared/components/travel-list/travel-list.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { TravelListComponent } from './shared/components/travel-list/travel-list
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

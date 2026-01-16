@@ -1,7 +1,8 @@
 
 
 <div class="container mt-4">
-    <app-travel-form></app-travel-form>
+    <app-travel-form
+    (emitNewMemory)="getNewMemory($event)"></app-travel-form>
 
     <app-travel-list
     [travelInfo]="travelArr"></app-travel-list>
