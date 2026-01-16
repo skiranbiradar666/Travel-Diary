@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ITravel } from '../../model/travel';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-travel-form',
@@ -9,7 +10,9 @@ import { ITravel } from '../../model/travel';
 })
 export class TravelFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private _snackBar : MatSnackBar
+  ) { }
 
   ngOnInit(): void {
   }
@@ -27,6 +30,12 @@ export class TravelFormComponent implements OnInit {
       console.log(travel)
       this.travelForm.reset()
       this.emitNewMemory.emit(travel)
+
+      this._snackBar.open('The new Travel-Memory added successfully !', 'close', {
+        horizontalPosition : 'center',
+        verticalPosition : 'top',
+        duration : 3000
+      })
     }
   }
 

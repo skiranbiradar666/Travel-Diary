@@ -4,25 +4,37 @@
 
 <div class="row">
   <div class="col-md-4 mb-4" *ngFor="let t of travelInfo">
-    <div class="card h-100">
-      <img [src]="t.imageUrl" class="card-img-top">
+    <div class="card travel-card h-100">
+      <div class="card-header bg-white  d-flex justify-content-between align-items-center">
+          <h2 class="m-0"><strong>{{ t.placeName }}, <span class="text-muted">{{ t.country }}</span></strong></h2>
+          <p class="m-0">⭐ {{ t.rating }}</p>
+      </div>
 
-      <div class="card-body">
-        <h5><strong>{{ t.placeName }}, {{ t.country }}</strong></h5>
-        <p>Date : {{ t.travelDate | date }}</p>
-        <p>{{ t.description }}</p>
-        <p>⭐ {{ t.rating }}</p>
-
+<<<<<<< HEAD
 
        
       </div>
       <div class="card-footer d-flex justify-content-between">
          <button class="btn btn-warning me-2"
+=======
+      <figure class="image-wrapper">
+          <img  mat-card-image [src]="t.imageUrl" class="img-fluid" [alt]="t.imageUrl">
+          <div class="image-overlay">
+              <p>{{ t.description }}</p>
+          </div>
+        </figure>
+      <div class="card-body p-0">  
+        <p class="text-muted mb-2">
+          📅 {{ t.travelDate | date:'longDate' }}
+        </p>
+       <div class="card-footer d-flex justify-content-between">
+         <button mat-raised-button color="primary" class="me-2"
+>>>>>>> b518a4e157c65ddfe06cd225e142be19ec7acfb4
           >
           Edit
         </button>
 
-        <button class="btn btn-danger"
+        <button mat-raised-button color="warn" 
           >
           Delete
         </button>
