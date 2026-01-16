@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ITravel } from '../../model/travel';
 import { TRAVEL_MEMORIES } from '../../const/travel';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
 
 @Component({
   selector: 'app-travel-dashboard',
@@ -9,7 +10,7 @@ import { TRAVEL_MEMORIES } from '../../const/travel';
 })
 export class TravelDashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private snackBar:SnackBarService) { }
 
   ngOnInit(): void {
   }
@@ -20,5 +21,11 @@ export class TravelDashboardComponent implements OnInit {
 
     this.travelArr.push(travel)
 
+  }
+
+  getRemoveId(id:number){
+    let getIndex = this.travelArr.findIndex(t=>t.id === id)
+    this.travelArr.splice(getIndex,1)
+    this.snackBar.showSuccessMsg(`The memory with id ${id} is removed successfully..!`)
   }
 }

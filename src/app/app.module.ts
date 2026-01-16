@@ -9,19 +9,26 @@ import { TravelDashboardComponent } from './shared/components/travel-dashboard/t
 import { TravelFormComponent } from './shared/components/travel-form/travel-form.component';
 import { TravelListComponent } from './shared/components/travel-list/travel-list.component';
 import { FormsModule } from '@angular/forms';
+import { GetConfirmedComponent } from './shared/components/get-confirmed/get-confirmed.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
     AppComponent,
     TravelDashboardComponent,
     TravelFormComponent,
-    TravelListComponent
+    TravelListComponent,
+    GetConfirmedComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     MatButtonModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule,
+    MatSnackBarModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
