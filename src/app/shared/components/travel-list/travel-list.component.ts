@@ -15,4 +15,8 @@ export class TravelListComponent implements OnInit {
 
   @Input() travelInfo !: ITravel[]
 
+  trackByTravel(index: number, item: any) {
+  return item.id;
+}
+
 }

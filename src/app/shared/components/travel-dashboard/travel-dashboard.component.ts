@@ -18,7 +18,7 @@ export class TravelDashboardComponent implements OnInit {
 
   getNewMemory(travel : ITravel){
 
-    this.travelArr.push(travel)
+    this.travelArr.unshift(travel)
 
   }
 }
