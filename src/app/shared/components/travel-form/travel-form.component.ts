@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ITravel } from '../../model/travel';
 
@@ -7,17 +7,40 @@ import { ITravel } from '../../model/travel';
   templateUrl: './travel-form.component.html',
   styleUrls: ['./travel-form.component.scss']
 })
-export class TravelFormComponent implements OnInit {
-
+export class TravelFormComponent implements OnInit, OnChanges {
+ isinEditMode:boolean=false
+ @Input() editTravel! : ITravel;
+  @Output() emitUpdatedTravelInfo : EventEmitter<ITravel>= new EventEmitter<ITravel>()
   constructor() { }
 
   ngOnInit(): void {
   }
 
+
+
   @ViewChild('travelForm') travelForm !: NgForm
 
   @Output() emitNewMemory : EventEmitter<ITravel> = new EventEmitter<ITravel>()
 
+
+  ngOnChanges(changes: SimpleChanges): void {
+      if(!!changes['editTravel']['currentValue']){
+        this.isinEditMode = true;
+        this.travelForm.form.patchValue(changes['editTravel']['currentValue'])
+      }
+  }
+
+
+onUpdate(){
+  if(this.travelForm.valid){
+   let UPDATED_OBJ : ITravel={ ...this.travelForm.value , id : this.editTravel.id
+
+   }
+  this.emitUpdatedTravelInfo.emit(UPDATED_OBJ)
+  this.isinEditMode = false
+  this.travelForm.reset()
+  }
+}
   onMemoryAdd(){
     if(this.travelForm.valid){
       let travel : ITravel = {

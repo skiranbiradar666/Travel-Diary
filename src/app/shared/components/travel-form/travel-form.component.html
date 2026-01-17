@@ -4,8 +4,9 @@
 
 <div class="card p-4 mb-4 h-100">
   <div class="card-body height">
+       <h4 class="bg-warning p-2">{{isinEditMode? '  Update Memory' : 'Add Memory'}}</h4>
     <form #travelForm="ngForm" (ngSubmit)="onMemoryAdd()" >
-        <h4>Add Memory</h4>
+     
 
             <input class="form-control mb-2"
                 ngModel
@@ -42,9 +43,13 @@
                 name="description"
                 placeholder="Description"></textarea>
 
-            <button type="submit"
+            <button *ngIf="!isinEditMode" type="submit" 
                 class="btn btn-info w-100">
                 Add Memory
+            </button>
+            <button *ngIf="isinEditMode" (click)="onUpdate()" type="button"
+                class="btn btn-info w-100">
+              Update Memory
             </button>
     </form>
   </div>
