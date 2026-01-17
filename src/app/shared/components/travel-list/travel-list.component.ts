@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ITravel } from '../../model/travel';
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { GetConfirmedComponent } from '../get-confirmed/get-confirmed.component';
 
 @Component({
   selector: 'app-travel-list',
@@ -8,12 +10,28 @@ import { ITravel } from '../../model/travel';
 })
 export class TravelListComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _matDialog : MatDialog) { }
 
   ngOnInit(): void {
   }
 
   @Input() travelInfo !: ITravel[]
+  @Output() removeId:EventEmitter<number> = new EventEmitter<number> ;
+
+  onMemoryRemove(t:ITravel){
+    let matConfig= new MatDialogConfig()
+    matConfig.width='500px'
+    matConfig.data = `Are you sure ,yo want to remove this memory with Id ${t.id}`
+    matConfig.disableClose=true;
+    let matDialogRef = this._matDialog.open(GetConfirmedComponent,matConfig)
+    matDialogRef.afterClosed()
+      .subscribe(flag=>{
+        if(flag){
+          this.removeId.emit(t.id)
+        }
+      })
+    
+  }
 
   trackByTravel(index: number, item: any) {
   return item.id;
