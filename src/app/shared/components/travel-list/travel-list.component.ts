@@ -11,7 +11,7 @@ import { GetConfirmedComponent } from '../get-confirmed/get-confirmed.component'
 })
 
 export class TravelListComponent implements OnInit   {
- scrollPosition =0
+ 
 @Output() emitEditTravel : EventEmitter<ITravel>= new EventEmitter<ITravel>()
  @Input() travelInfo !: ITravel[]
   constructor(private _matDialog : MatDialog) { }

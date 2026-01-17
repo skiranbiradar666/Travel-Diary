@@ -35,6 +35,7 @@ editTravelInfo !:ITravel
   }
   getEditTravel(eve : ITravel){
     this.editTravelInfo = eve
+    console.log(eve)
     this._snackbar.open(`The travelForm eithid ${eve.id} is patch successfuly ` , 'close' ,{
       horizontalPosition: 'center',
       verticalPosition : 'top',
