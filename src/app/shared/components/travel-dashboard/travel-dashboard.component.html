@@ -2,8 +2,11 @@
 
 <div class="container mt-4">
     <app-travel-form
-    (emitNewMemory)="getNewMemory($event)"></app-travel-form>
+   (emitUpdatedTravelInfo)="getUpdatedTravelInfo($event)"
+    (emitNewMemory)="getNewMemory($event)"
+     [editTravel]="editTravelInfo"></app-travel-form>
 
     <app-travel-list
-    [travelInfo]="travelArr"  (removeId)="getRemoveId($event)"></app-travel-list>
+    [travelInfo]="travelArr"  (removeId)="getRemoveId($event)"
+    (emitEditTravel)="getEditTravel($event)"></app-travel-list>
 </div>

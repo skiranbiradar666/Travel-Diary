@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
+import {  Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ITravel } from '../../model/travel';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { GetConfirmedComponent } from '../get-confirmed/get-confirmed.component';
@@ -8,15 +9,18 @@ import { GetConfirmedComponent } from '../get-confirmed/get-confirmed.component'
   templateUrl: './travel-list.component.html',
   styleUrls: ['./travel-list.component.scss']
 })
-export class TravelListComponent implements OnInit {
 
+export class TravelListComponent implements OnInit   {
+ scrollPosition =0
+@Output() emitEditTravel : EventEmitter<ITravel>= new EventEmitter<ITravel>()
+ @Input() travelInfo !: ITravel[]
   constructor(private _matDialog : MatDialog) { }
 
   ngOnInit(): void {
   }
 
-  @Input() travelInfo !: ITravel[]
-  @Output() removeId:EventEmitter<number> = new EventEmitter<number> ;
+ 
+  @Output() removeId:EventEmitter<number> = new EventEmitter<number>() ;
 
   onMemoryRemove(t:ITravel){
     let matConfig= new MatDialogConfig()
@@ -35,6 +39,10 @@ export class TravelListComponent implements OnInit {
 
   trackByTravel(index: number, item: any) {
   return item.id;
+  }
+onEdit(travel: ITravel){
+  this.emitEditTravel.emit(travel)
 }
+
 
 }
