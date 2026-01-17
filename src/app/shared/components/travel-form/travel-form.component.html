@@ -5,32 +5,39 @@
 <div class="card p-4 mb-4 h-100">
   <div class="card-body height">
     <form #travelForm="ngForm" (ngSubmit)="onMemoryAdd()" >
-        <h4>Add Memory</h4>
+        <h2 class="font-weight-bold mb-3 border-bottom pb-2 text-dark">Add  New Travel Memory</h2>
 
             <input class="form-control mb-2"
                 ngModel
                 name="placeName"
+                #placeName="ngModel"
                 required
                  placeholder="Place Name">
+                 <strong class="text-danger" *ngIf="placeName.touched && placeName.invalid">
+                    PlaceName is required Field !</strong>
     
 
             <input class="form-control mb-2"
                 ngModel
                 name="country"
+                #country="ngModel"
                 required
                 placeholder="Country">
+                <strong class="text-danger" *ngIf="country.touched && country.invalid">Country is required field!</strong>
 
             <input type="date" 
                 ngModel
                 name="travelDate"
-                
+              
             class="form-control mb-2">
 
             <input class="form-control mb-2"
                 ngModel
                 name="imageUrl"
+                #imageUrl="ngModel"
                 required
                 placeholder="Image URL">
+                <strong class="text-danger" *ngIf="imageUrl.touched && imageUrl.invalid">Image is required field !</strong>
 
             <select type="text" class="form-control mb-2" ngModel name="rating" required>
                 <option value="">- - Select Rating - -</option>
@@ -44,10 +51,15 @@
             <textarea class="form-control mb-3"
                 ngModel
                 name="description"
+                #description="ngModel"
                 required
                 placeholder="Description"></textarea>
+                <strong class="text-danger" *ngIf="description.touched && description.invalid">
+                    Description is required field !
+                </strong>
 
             <button type="submit"
+                [disabled]="travelForm.invalid"
                 class="btn btn-info w-100">
                 Add Memory
             </button>
